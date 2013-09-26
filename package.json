@@ -1,7 +1,7 @@
 {
   "name": "utmq",
   "version": "0.1.0",
-  "description": "utmq ====",
+  "description": "UTMQ assessment generator tool",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-node-webkit-builder": "~0.1.6"
+    "grunt-node-webkit-builder": "~0.1.6",
+    "nodewebkit": "~0.7.5"
   }
 }
