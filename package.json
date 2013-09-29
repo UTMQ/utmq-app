@@ -4,6 +4,7 @@
   "description": "UTMQ Assessment Tool App Version",
   "main": "index.js",
   "scripts": {
+    "start": "grunt",
     "test": "grunt test"
   },
   "repository": {
