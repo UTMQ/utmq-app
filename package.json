@@ -1,24 +1,24 @@
 {
-  "name": "utmq",
+  "name": "utmq-app",
   "version": "0.1.0",
-  "description": "UTMQ assessment generator tool",
+  "description": "UTMQ Assessment Tool App Version",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/UTMQ/utmq.git"
+    "url": "https://github.com/UTMQ/utmq-app.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/UTMQ/utmq/issues"
+    "url": "https://github.com/UTMQ/utmq-app/issues"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-node-webkit-builder": "~0.1.7",
-    "utmq-viewer": "git://github.com/UTMQ/UTMQ-Viewer.git#29cd7fbec64dc4cd50f6fc523e2b4838828a8ca9",
+    "utmq-viewer": "git://github.com/UTMQ/utmq-core.git#0bf36291d1e189ef",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-shell": "~0.4.0",
     "grunt-contrib-watch": "~0.5.3",

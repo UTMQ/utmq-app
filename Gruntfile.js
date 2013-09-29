@@ -44,7 +44,7 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: [
-          'cd node_modules/utmq-viewer',
+          'cd node_modules/utmq-core',
           'npm install',
           'bower install',
           'grunt '
@@ -56,12 +56,19 @@ module.exports = function(grunt) {
           stderr: true
         },
         command: 'open build/releases/UTMQ/mac/UTMQ.app'
+      },
+      exit: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: 'exit 0'
       }
     },
     copy: {
       main: {
         expand: true,
-        cwd: 'node_modules/utmq-viewer/dist',
+        cwd: 'node_modules/utmq-core/dist',
         src: '**',
         dest: 'public/'
       },
@@ -93,6 +100,7 @@ module.exports = function(grunt) {
   grunt.registerTask('buildLinux32', ['setup', 'nodewebkit:linux32']);
   grunt.registerTask('buildMac', ['setup', 'nodewebkit:mac']);
   grunt.registerTask('build', ['setup', 'nodewebkit:all']);
+  grunt.registerTask('test', ['shell:exit']);
 
 
 };
