@@ -57,12 +57,12 @@ module.exports = function(grunt) {
         },
         command: 'open build/releases/UTMQ/mac/UTMQ.app'
       },
-      exit: {
+      checkBuild: {
         options: {
           stdout: true,
           stderr: true
         },
-        command: 'exit 0'
+        command: 'cd build/releases/UTMQ && exit 0'
       }
     },
     copy: {
@@ -80,12 +80,7 @@ module.exports = function(grunt) {
       }
     },
     clean: {
-      build: ['public'],
-      // this below fixes an issue with the wrong package.json
-      // https://github.com/mllrsohn/grunt-node-webkit-builder/issues/15
-      pkgFix: [
-        'public/bower_components/**/package.json'
-      ]
+      build: ['public']
     }
   });
 
@@ -95,12 +90,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('default', ['buildMac', 'shell:openMac']);
-  grunt.registerTask('setup', ['clean', 'shell:buildUtmq', 'copy:main', 'copy:extras', 'clean:pkgFix']);
+  grunt.registerTask('setup', ['clean', 'shell:buildUtmq', 'copy:main', 'copy:extras']);
 
   grunt.registerTask('buildLinux32', ['setup', 'nodewebkit:linux32']);
   grunt.registerTask('buildMac', ['setup', 'nodewebkit:mac']);
   grunt.registerTask('build', ['setup', 'nodewebkit:all']);
-  grunt.registerTask('test', ['shell:exit']);
+  grunt.registerTask('test', ['shell:checkBuild']);
 
 
 };

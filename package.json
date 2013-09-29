@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
-    "grunt-node-webkit-builder": "~0.1.7",
+    "grunt-node-webkit-builder": "~0.1.8",
     "utmq-viewer": "git://github.com/UTMQ/utmq-core.git#0bf36291d1e189ef",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-shell": "~0.4.0",
