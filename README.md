@@ -1,17 +1,5 @@
 UTMQ
 ====
 
-UTMQ - an assessment tool with question authoring capabilities.
-
-## Dev Setup
-
-
-```
-npm install
-```
-
-### Clean Setup
-
-```
-rm -rf node_modules && npm cache clean && npm install
-```
+[![Build Status](https://travis-ci.org/UTMQ/UTMQ-Creator.png)](https://travis-ci.org/UTMQ/utmq-creator)
+[![Dependency Status](https://david-dm.org/utmq/utmq-creator.png)](https://david-dm.org/utmq/utmq-creator)

@@ -1,12 +1,11 @@
 {
   "main": "index.html",
   "name": "UTMQ",
-  "private": true,
   "description": "UTMQ assessment generator tool",
   "version": "0.1.0",
   "window": {
-    "title": "node-webkit demo",
-    "icon": "images/utmq.png",
+    "title": "UTMQ",
+    "icon": "utmq.png",
     "toolbar": true,
     "frame": true,
     "width": 800,
@@ -16,11 +15,5 @@
     "min_height": 200,
     "max_width": 800,
     "max_height": 600
-  },
-  "webkit": {
-    "plugin": false
-  },
-  "dependencies": {
-    "deck":"latest"
   }
 }

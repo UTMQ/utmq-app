@@ -1,4 +1,4 @@
-var APP_SRC = './public/**/*';
+var APP_SRC = './public/**';
 
 module.exports = function(grunt) {
 
@@ -6,9 +6,7 @@ module.exports = function(grunt) {
     // node-webkit build stuff
     nodewebkit: {
       options: {
-        version: '0.7.5',
-        build_dir: './build', // Where the build version of my node-webkit app is saved
-        credits: './public/credits.html'
+        build_dir: './build' // Where the build version of my node-webkit app is saved
       },
       // the mac version is the default debug build
       mac: {
@@ -16,6 +14,15 @@ module.exports = function(grunt) {
           mac: true,
           win: false,
           linux32: false,
+          linux64: false
+        },
+        src: APP_SRC
+      },
+      linux32: {
+        options: {
+          mac: false,
+          win: false,
+          linux32: true,
           linux64: false
         },
         src: APP_SRC
@@ -30,19 +37,62 @@ module.exports = function(grunt) {
         src: APP_SRC
       }
     },
-    // watch
-    watch: {
-      scripts: {
-        files: [ APP_SRC ],
-        tasks: [ 'nodewebkit:mac' ]
+    shell: {
+      buildUtmq: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: [
+          'cd node_modules/utmq-viewer',
+          'npm install',
+          'bower install',
+          'grunt '
+        ].join(' && ')
+      },
+      openMac: {
+        options: {
+          stdout: true,
+          stderr: true
+        },
+        command: 'open build/releases/UTMQ/mac/UTMQ.app'
       }
+    },
+    copy: {
+      main: {
+        expand: true,
+        cwd: 'node_modules/utmq-viewer/dist',
+        src: '**',
+        dest: 'public/'
+      },
+      extras: {
+        expand: true,
+        cwd: 'extras',
+        src: '**',
+        dest: 'public/'
+      }
+    },
+    clean: {
+      build: ['public'],
+      // this below fixes an issue with the wrong package.json
+      // https://github.com/mllrsohn/grunt-node-webkit-builder/issues/15
+      pkgFix: [
+        'public/bower_components/**/package.json'
+      ]
     }
   });
 
   grunt.loadNpmTasks('grunt-node-webkit-builder');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('default', ['nodewebkit']);
-  grunt.registerTask('dev', ['nodewebkit']);
+  grunt.registerTask('default', ['buildMac', 'shell:openMac']);
+  grunt.registerTask('setup', ['clean', 'shell:buildUtmq', 'copy:main', 'copy:extras', 'clean:pkgFix']);
+
+  grunt.registerTask('buildLinux32', ['setup', 'nodewebkit:linux32']);
+  grunt.registerTask('buildMac', ['setup', 'nodewebkit:mac']);
+  grunt.registerTask('build', ['setup', 'nodewebkit:all']);
+
 
 };
